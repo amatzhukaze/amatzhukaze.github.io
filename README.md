@@ -1,0 +1,1 @@
+"# amatzhukaze.github.io" 
