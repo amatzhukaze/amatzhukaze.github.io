@@ -30,13 +30,12 @@ h3 {
 	margin: 0;
 	text-align: center;
 	font-family: "Century Gothic", Arial, sans-serif;
-
 	font-size: 40px;
 	font-style: italic;
 	font-weight: bold;
 }
 
-p, ul, li {
+p, ul, li{
 	margin: 0;
 	line-height: 50px;
 	text-align: left;
@@ -44,6 +43,80 @@ p, ul, li {
 	font-size: 25px;
 	font-weight: 100;
 }
+
+ul.menubar {
+	position: fixed;
+	top: 0;
+    width: 100%;
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #222;
+    border-bottom: 1px solid #555;
+    z-index: 999;
+}
+
+li.menuitem {
+	width:100%;
+	font-family: "Century Gothic";
+	float: left;
+	display: inline;
+    color: white;
+    text-align: center;
+    padding: 0px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 60px;
+}
+
+.button {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 25px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 20px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    font-family: SourceSansPro;
+    font-style: italic;
+}
+
+.button:hover {
+	background-color: white;
+	color: gray;
+}
+
+.buttoncontainer {
+	margin:0;
+	padding: 0;
+	background-color: white;
+	text-align: right;
+	width: 100%
+}
+
+button.button1 {
+	float: right;
+	border: 1px solid white;
+	display: block;
+	padding: 10px 32px;
+    font-size: 16px;
+    font-style: normal;
+    margin: 10px;
+
+}
+
+.button1:hover{
+	background-color: white;
+	color: #222;
+}
+
 
 .caption {
 	position: relative;
