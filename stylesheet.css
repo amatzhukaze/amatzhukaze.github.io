@@ -9,10 +9,15 @@ body,html {
 	src: url("SourceSansPro-ExtraLight.otf");
 }
 
+@font-face {
+	font-family: CenturyGothic;
+	src: url("CenturyGothicRegular");
+}
+
 h1 {
 	margin: 0;
 	text-align: center;
-	font-family: "Century Gothic", Arial, sans-serif;
+	font-family: "Century Gothic", CenturyGothic, sans-serif;
 	font-style: bold;
 	font-size: 72px;
 }
@@ -29,7 +34,7 @@ h2 {
 h3 {
 	margin: 0;
 	text-align: center;
-	font-family: "Century Gothic", Arial, sans-serif;
+	font-family: "Century Gothic", CenturyGothic, sans-serif;
 	font-size: 40px;
 	font-style: italic;
 	font-weight: bold;
@@ -59,7 +64,7 @@ ul.menubar {
 
 li.menuitem {
 	width:100%;
-	font-family: "Century Gothic";
+	font-family: "Century Gothic", CenturyGothic;
 	float: left;
 	display: inline;
     color: white;
