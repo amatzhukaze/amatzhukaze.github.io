@@ -4,6 +4,24 @@ body,html {
 	padding: 0;
 }
 
+.fadein {
+  animation: animationFrames ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode:forwards;
+}
+
+@keyframes animationFrames {
+  0% {
+    opacity:0;
+    transform:  translate(0px,25px)  ;
+  }
+  100% {
+    opacity:1;
+    transform:  translate(0px,0px)  ;
+  }
+}
+
 @font-face {
 	font-family: SourceSansPro;
 	src: url("SourceSansPro-ExtraLight.otf");
@@ -92,7 +110,7 @@ li.menuitem {
     line-height: 60px;
 }
 
-.button {
+.button{
     background-color: transparent;
     border: 2px solid white;
     border-radius: 5px;
@@ -168,15 +186,15 @@ button.button1 {
 }
 
 .gallery { 
-	margin: 30px;
+	margin: 0;
     border: 1px solid gray;
-    width: 20%;
+    width: 90%;
     transition-duration: 0.3s;
-    float: left;
 }
 
 .gallery:hover {
     border: 1px solid black;
+    box-shadow: 0px 0px 10px darkgray;
 }
 
 .gallery img {
@@ -189,4 +207,58 @@ button.button1 {
 	margin-top: -5px;
     padding: 15px;
     background-color: white;
+}
+
+input[type=number], input[type=text], select, textarea {
+	font-family: SourceSansPro;
+	font-size: 25px;
+	width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    transition-duration: 0.3s;
+}
+
+input[type=number]:focus, input[type=text]:focus, select:focus, textarea:focus {
+	border: 1px solid black;
+    box-shadow: 0px 0px 10px darkgray;
+}
+
+.quartersplit {
+	width: 24%; 
+	overflow: auto; 
+	display: inline-block; 
+	padding: 5px;
+	margin-bottom: 50px;
+}
+
+option{
+	font-family: SourceSansPro;
+	font-size: 25px;
+	line-height: 50px;
+    padding: 12px 20px;
+}
+
+input[type=submit] {
+	background-color: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 25px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 20px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    font-family: SourceSansPro;
+    font-style: italic;
+}
+
+input[type=submit]:hover {
+	background-color: black;
+	color: white;
 }

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order Form</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+
+<ul class = " ul menubar">
+  <li class="li menuitem">
+  	<div style="width: 100%">
+  		<div style="float: left; text-align: left; width:20%;">aG</div>
+  		<div style="float: right; text-align: right; width:20%; padding-right: 35px"><a href="index.html"><button class="button button1">Home</button></a></div>
+  	</div>
+  </li>
+</ul>
+
+<div class = "introImage">
+	<div class = "caption">
+
+		<h1 style = "color: white;">Order Form</h1>
+		<h2 style = "color: white;">Getting you ready in no time</h2>
+		<a href="index.html"><button class="button">Go back to Homepage</button></a>
+
+	</div>
+</div>
+
+
+<div class="introText">
+	<form action="https://formspree.io/amatzhukaze@gmail.com" method="POST">
+	<p><b>Note:</b> If only ordering bundles, skip <b>Step 1</b></p>
+	<br><br><br>
+	<p><b>Step 1:</b> Individual Items</p>
+	<br>
+		<div style="display: block; width: 100%; overflow: auto;">
+	
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="overlay.png" alt="Overlay">
+  				<div class="desc">
+  					<p style = "text-align: center;">Overlay</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="overlayqty" value = 0 placeholder="Enter value...">
+			</div>
+
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="offlinebg.png" alt="Offline Bg">
+  				<div class="desc">
+  					<p style = "text-align: center;">Offline Background</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="offinebgqty" value = 0 placeholder="Enter value...">
+			</div>
+
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="panels.png" alt="Panels">
+  				<div class="desc">
+  					<p style = "text-align: center;">Panel</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="panelqty" value = 0 placeholder="Enter value...">
+			</div>
+
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="ava.png" alt="Avatar">
+  				<div class="desc">
+  					<p style = "text-align: center;">Avatar</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="avaqty" value = 0 placeholder="Enter value...">
+			</div>
+
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="profilecover.png" alt="Profile Cover">
+  				<div class="desc">
+  					<p style = "text-align: center;">Profile Cover</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="profilecoverqty" value = 0 placeholder="Enter value...">
+			</div>
+
+		</div>
+
+		<br><br><br>
+
+		<p><b>Step 2:</b> Bundle Items</p>
+		<br>
+		<div style="display: block; width: 100%; overflow: auto;">
+	
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="basicbundle.png" alt="Basic">
+  				<div class="desc">
+  					<p style = "text-align: center;">Basic</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="basicqty" value = 0 placeholder="Enter value...">
+			</div>
+
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="wegotyoucoveredbundle.png" alt="We Got You covered">
+  				<div class="desc">
+  					<p style = "text-align: center;">We got you covered</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="wegotyoucoveredqty" value = 0 placeholder="Enter value...">
+			</div>
+
+			<div class = "quartersplit">
+			<div class="gallery">
+    			<img src="thewholeshebangbundle.png" alt="The Whole Shebang">
+  				<div class="desc">
+  					<p style = "text-align: center;">The Whole Shebang</p>
+  				</div>
+			</div>
+				<p>Quantity:</p><input type="number" name="thewholeshebangqty" value = 0 placeholder="Enter value...">
+			</div>
+
+		</div>
+		<br><br><br>
+
+		<p><b>Step 3:</b> Other Information</p>
+		<br><br>
+		<p>Email Address</p> <input type=text name="email" placeholder="Email...">
+		<br><br>
+		<p>What do you want me to call you by?</p><input type="text" name="name" placeholder="Name...">
+		<br><br>
+		<p>How do you want me to contact you?</p>
+		<select name="contactplatform">
+			<option value="Email">Email</option>
+			<option value = "Discord">Discord</option>
+			<option value = "Twitch">Twitch</option>
+			<option value = "Other">Other...</option>
+		</select>
+		<br><br>
+		<p>If email was not selected in previous question, please input contact information for selected platform</p>
+		<input type="text" name="othercontactinfo" placeholder='If "Other" was selected, please include platform name'>
+		<br><br>
+		<p>Help me know who you are through your social media...</p>
+		<textarea name="Customer Reference" placeholder="Format: [Platform] - [username] (ie. Twitch - Amatzhukaze) or just paste a link to your pages" style="height: 300px;"></textarea>
+		<br><br>
+		<p>What is your PayPal Email?</p>
+		<input type="text" name="paypalemail" placeholder="Email...">
+		<br><br>
+		<p>Anything Else?</p>
+		<textarea name="Other Information" placeholder="If you have any special requests that doesn't match what was listed above, now is a great time to specify." style="height: 300px"></textarea>
+		<br><br><br><br><br>
+		<center>
+			<p>By submitting, you agree to the <a target="_blank" href="https://bit.ly/AmatOrderForm">Terms of Service and Policies</a>.</p>
+			<br>
+			<input type="submit" value="Submit">
+		</center>
+	</form>
+
+
+
+</body>
+</html>
