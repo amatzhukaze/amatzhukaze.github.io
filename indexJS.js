@@ -1,11 +1,7 @@
 $(document).ready(function() {
-	$(".gallery").on('click', function() {
-		$(this).parent().children("input:first").val(function(i, oldval) {
-    		return parseInt( oldval, 10) + 1;
-			});
-	});
-
-	    $(window).scroll( function(){
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
     
         /* Check the location of each desired element */
         $('.introText').each( function(i){
@@ -23,4 +19,5 @@ $(document).ready(function() {
         }); 
     
     });
+    
 });
