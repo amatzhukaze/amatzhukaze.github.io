@@ -1,166 +1,209 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Order Form</title>
-	<link rel="stylesheet" type="text/css" href="oldStylesheet.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>Order Form - Amatzhukaze Graphics</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script type="text/javascript" src="OrderFormJS.js"></script>
 </head>
 <body>
 
-<ul class = " ul menubar">
-  <li class="li menuitem">
-  	<div style="width: 100%">
-  		<div style="float: left; text-align: left; width:20%;">aG</div>
-  		<div style="float: right; text-align: right; width:20%; padding-right: 35px"><a href="http://amatzhukaze.graphics"><button class="button button1">Home</button></a></div>
-  	</div>
-  </li>
-</ul>
+	<div class="wrapper" style="height: 100%; width: 100%">
+	<div class = "banner">
+		<p style="color: rgb(128,128,128);">Under construction, <a href="old.html">Old site</a></p>
+		<div class = "caption">
+			<h1 style = "color: white;">Amatzhukaze Graphics</h1>
+		</div>
+	</div>
 
-<div class = "introImage">
-	<div class = "caption">
+	<div class="tab-container" style="grid-template-columns: auto auto auto auto;">
 
-		<h1 style = "color: white;">Order Form</h1>
-		<h2 style = "color: white;">Getting you ready in no time</h2>
-		<a href="index.html"><button class="button">Go back to Homepage</button></a>
+		<a href="http://amatzhukaze.graphics" onclick="openTab(event, 'Home');" style="text-decoration: none; color: black;">
+			<div class = "tab"><h2>Homepage</h2></div>
+		</a>
+
+		<a href="javascript:void(0)" onclick="openTab(event, 'Items');" style="text-decoration: none; color: black;">
+			<div class = "tab tabSelected"><h2>Step 1: Items</h2></div>
+		</a>
+
+		<a href="javascript:void(0)" onclick="openTab(event, 'Info');" style="text-decoration: none; color: black;">
+			<div class = "tab"><h2>Step 2: Information</h2></div>
+		</a>
+
+		<a id="ReviewTab" class = "disabled" href="javascript:void(0)" onclick="generateOrder(event); openTab(event, 'Review');" style="text-decoration: none; color: black;">
+			<div class = "tab"><h2>Step 3: Checkout</h2></div>
+		</a>
 
 	</div>
-</div>
 
 
-<div class="introText">
 	<form action="https://formspree.io/amatzhukaze@gmail.com" method="POST">
-	<p><b>Note:</b> If only ordering bundles, skip <b>Step 1</b></p>
-	<br><br><br>
-	<p><b>Step 1:</b> Individual Items</p>
-	<br>
-		<div style="display: block; width: 100%; overflow: auto;">
-	
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="overlay.png" alt="Overlay">
-  				<div class="desc">
-  					<p style = "text-align: center;">Overlay</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="Overlays" value = 0 placeholder="Enter value...">
+	<div id = "Items" class = "tabDescription" style="display: block;">
+		<div class="itemgallery-container">
+
+
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(overlay.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Overlay ($5 USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Overlays" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="offlinebg.png" alt="Offline Bg">
-  				<div class="desc">
-  					<p style = "text-align: center;">Offline Background</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="Offline Backgrounds" value = 0 placeholder="Enter value...">
+
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(cambox.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Camera Box ($3 USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Camera Boxes" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="panels.png" alt="Panels">
-  				<div class="desc">
-  					<p style = "text-align: center;">Panel</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="Panels" value = 0 placeholder="Enter value...">
+
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(offlinebg.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Offline Background ($5 USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Offline Backgrounds" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="ava.png" alt="Avatar">
-  				<div class="desc">
-  					<p style = "text-align: center;">Avatar</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="Avatars" value = 0 placeholder="Enter value...">
+
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(profilecover.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Profile Cover ($5 USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Profile Covers" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="profilecover.png" alt="Profile Cover">
-  				<div class="desc">
-  					<p style = "text-align: center;">Profile Cover</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="Profile Covers" value = 0 placeholder="Enter value...">
+
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(panels.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Panel ($1 USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Panels" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-		</div>
 
-		<br><br><br>
-
-		<p><b>Step 2:</b> Bundle Items</p>
-		<br>
-		<div style="display: block; width: 100%; overflow: auto;">
-	
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="basicbundle.png" alt="Basic">
-  				<div class="desc">
-  					<p style = "text-align: center;">Basic</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="Basic Bundles" value = 0 placeholder="Enter value...">
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(ava.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Avatar ($1 USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Avatars" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="wegotyoucoveredbundle.png" alt="We Got You covered">
-  				<div class="desc">
-  					<p style = "text-align: center;">We got you covered</p>
-  				</div>
-			</div>
-				<p>Quantity:</p><input type="number" name="We Got You Covered Bundles" value = 0 placeholder="Enter value...">
+
+			<div class="itemgallery-item">
+				<div class="itemgallery-itemimage">
+					<div class="itemgallery-itempic" style="background: url(specialrequest.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
+					<div class="itemgallery-itemdescription"><p style="text-align: center;">Special Request ($? USD)</p></div>
+				</div>
+				<p>Quantity:</p><input type="number" name="Special Requests" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
 			</div>
 
-			<div class = "quartersplit">
-			<div class="gallery">
-    			<img src="thewholeshebangbundle.png" alt="The Whole Shebang">
-  				<div class="desc">
-  					<p style = "text-align: center;">The Whole Shebang</p>
-  				</div>
+
+			<div class="itemgallery-item" style="grid-column-start: 2; grid-column-end: 4;">
+				<textarea name="Special Request Description" placeholder="Describe your request..." onchange="checkOrderTab(event);" style="height: 100%; width: 100%; text-anchor: top left; margin: 0;"></textarea>
 			</div>
-				<p>Quantity:</p><input type="number" name="The Whole Shebang Bundles" value = 0 placeholder="Enter value...">
+
+			<div id="costCalculator" class="itemgallery-item" style="grid-column-start: 1; grid-column-end: 4; display: grid; grid-template-columns: 25% 12.5% 25% 12.5% 25%;">
+				<div id="cost-title" class="costCalculator-item"><h2 style="font-size: 40px"><b>Cost</b></h2></div>
+				<div id="blank1" class="costCalculator-item"></div>
+				<div id="discount-title" class="costCalculator-item"><h2 style="font-size: 40px"><b>Discount</b></h2></div>
+				<div id="blank2" class="costCalculator-item"></div>
+				<div id="totalcost-title" class="costCalculator-item"><h2 style="font-size: 40px"><b>Total</b></h2></div>
+				<div id="cost-value" class="costCalculator-item"><h2 style="font-size: 40px">$0.00 USD</h2></div>
+				<div id="minus-sign" class="costCalculator-item"><h2 style="font-size: 40px"><b>&ndash;</b></h2></div>
+				<div id="discount-value" class="costCalculator-item"><h2 style="font-size: 40px">$0.00 USD</h2></div>
+				<div id="equal-sign" class="costCalculator-item"><h2 style="font-size: 40px"><b>=</b></h2></div>
+				<div id="totalcost-value" class="costCalculator-item"><h2 style="font-size: 40px">$0.00 USD</h2></div>
 			</div>
 
 		</div>
-		<br><br><br>
+	</div>
 
-		<p><b>Step 3:</b> Other Information</p>
-		<br><br>
-		<p>Email Address</p> <input type=text name="Email Address" placeholder="Email...">
-		<br><br>
-		<p>What do you want me to call you by?</p><input type="text" name="IGN" placeholder="Name...">
-		<br><br>
+	<div id = "Info" class = "tabDescription" style="display: none;">
+		<p>What do you want me to call you by?</p><input type="text" name="IGN" placeholder="Name..." onchange="checkInfoTab(event);">
+		<br><br><br>
 		<p>How do you want me to contact you?</p>
-		<select name="contactplatform">
+		<div style="display: grid; grid-template-columns: 200px auto; grid-column-gap: 20px;">
+		<select name="Contact Platform" onchange="changeSelectPlaceholder(event); validate(event); checkInfoTab(event);">
 			<option value="Email">Email</option>
 			<option value = "Discord">Discord</option>
 			<option value = "Twitch">Twitch</option>
 			<option value = "Other">Other...</option>
 		</select>
-		<br><br>
-		<p>If email was not selected in previous question, please input contact information for selected platform</p>
-		<input type="text" name="Other Contact Information" placeholder='If "Other" was selected, please include platform name'>
-		<br><br>
+		<input type="text" name="Contact Information" placeholder='username@service.com...' onchange="validate(event); checkInfoTab(event);">
+		</div>
+		<br><br><br>
 		<p>Help me know who you are through your social media...</p>
-		<textarea name="Customer Reference" placeholder="Format: [Platform] - [username] (ie. Twitch - Amatzhukaze) or just paste a link to your pages" style="height: 300px;"></textarea>
-		<br><br>
+		<textarea name="Customer Reference" placeholder="Paste a link to your pages..." style="height: 300px;" onchange="checkInfoTab(event);"></textarea>
+		<br><br><br>
 		<p>What is your PayPal Email?</p>
-		<input type="text" name="PayPal Email" placeholder="Email...">
-		<br><br>
+		<input type="text" name="PayPal Email" placeholder="Email..." onchange="validatePayPal(event); checkInfoTab(event);">
+		<br><br><br>
 		<p>Anything Else?</p>
-		<textarea name="Other Information" placeholder="If you have any special requests that doesn't match what was listed above, now is a great time to specify." style="height: 300px"></textarea>
-		<br><br><br><br><br>
-		<center>
-			<p>By submitting, you agree to the <a target="_blank" href="https://bit.ly/AmatOrderForm">Terms of Service and Policies</a>.</p>
-			<br>
-			<input type="submit" value="Submit">
-		</center>
+		<textarea name="Other Information" placeholder="Anything else you would like to mention?..." style="height: 300px" onchange="checkInfoTab(event);"></textarea>
+	</div>
+
+	<div id = "Review" class = "tabDescription" style="display: none;">
+
+		<div style="width:100%; text-align: left; padding: 75px 0px 75px 0px; border-bottom: 1px solid rgb(192,192,192);">
+			<h2 style="text-align: left;">
+				<b>Your Order:</b>
+				<br><br>
+			</h2>
+
+			<div id="itemTable" style="width:100%; text-align: left; display: grid; grid-template-columns: 50% 10% 40%;">
+				<div class="product-header"><p>Item</p></div>
+				<div class="product-header"><p>Qty.</p></div>
+				<div class="product-header"><p>Price</p></div>
+			</div>
+		</div>
+
+		<div style="width:100%; text-align: left; padding: 75px 0px 75px 0px; border-bottom: 1px solid rgb(192,192,192);">
+			<h2 style="text-align: left;"><b>Information:</b>
+				<br><br><br>
+			</h2>
+
+			<p><b>Name:</b></p>
+			<p id = "IGN"></p>
+
+			<p><br></p>
+
+			<p><b>Contact:</b></p>
+			<p id = "Contact"></p>
+
+			<p><br></p>
+
+			<p><b>Reference:</b></p>
+			<p id = "Reference"></p>
+
+			<p><br></p>
+
+			<p><b>PayPal Email:</b></p>
+			<p id = "PayPal"></p>
+
+			<p><br></p>
+
+			<p><b>Anything Else:</b></p>
+			<p id="Other"></p>
+
+		</div>
+
+		<div style="width:100%; text-align: left; padding-top: 75px;">
+			<center>
+				<p>By submitting, you agree to the <a target="_blank" href="https://bit.ly/AmatOrderForm">Terms of Service and Policies</a>.</p>
+				<br>
+				<input type="submit" value="Submit">
+			</center>
+		</div>
+	</div>
+
 	</form>
-
-
+	</div>
 
 </body>
 </html>

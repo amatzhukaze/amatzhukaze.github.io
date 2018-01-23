@@ -81,7 +81,6 @@ a:active {
 .tab-container {
 	position: relative;
 	display: grid;
-	grid-template-columns: 20% 20% 20% 20% 20%;
 	padding: 0px 150px 0px 150px;
 }
 
@@ -163,4 +162,95 @@ a:active {
 	padding: 10px;
 	border: none;
 	text-align: left;
+}
+
+.itemgallery-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	grid-row-gap: 150px;
+}
+
+.itemgallery-item {
+	padding: 0px 20px 0px 20px;
+}
+
+
+.itemgallery-itemimage {
+	margin: 0px 0px 10px 0px;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+/*
+.itemgallery-itempic {
+	background-size: contain; 
+	background-repeat: no-repeat;
+	height: 0;
+	width: 100%; 
+	padding-top: 56.25%;
+}
+*/
+
+input[type=number], input[type=text], select, textarea {
+	font-family: SourceSansPro;
+	font-size: 20px;
+	width: 100%;
+    padding: 15px;
+    margin: 0;
+    display: inline;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    transition-duration: 0.0s;
+}
+
+input[type=number]:focus, input[type=text]:focus, select:focus, textarea:focus, input[type=number]:hover, input[type=text]:hover, select:hover, textarea:hover {
+	border: 1px solid black;
+}
+
+option{
+	font-family: SourceSansPro;
+	font-size: 20px;
+	line-height: 50px;
+    padding: 15px;
+}
+
+input[type=submit] {
+	background-color: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 25px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    font-family: SourceSansPro;
+    font-style: italic;
+}
+
+input[type=submit]:hover {
+	background-color: black;
+	color: white;
+}
+
+.costCalculator-item {
+	padding: 40px;
+	text-align: center;
+	position: relative; 
+}
+
+.enabled {
+	opacity: 1;
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+	cursor: default;
 }
