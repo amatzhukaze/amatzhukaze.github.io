@@ -71,6 +71,7 @@ a:active {
 	background-size: cover; 
 	background-position: bottom; 
 	background-attachment: fixed;
+	transition: background 1s;
 }
 
 .bottombanner {

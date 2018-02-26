@@ -1,331 +1,246 @@
+var order = {
+	complete: false,
+	overlay: 0,
+	camerabox: 0,
+	offlinebg: 0,
+	profilecover: 0,
+	panel: 0,
+	avatar: 0,
+	specialrequest: 0,
+	specialrequestdesc: "",
 
-//OOPS TOTALLY FORGOT JS SUPPORTS OOP, IM SO STUPID LMFAO
-//TOO LAZY TO LEARN JQUERY, TOO HARD TO READ
+	calculate: function() {
 
-var itemTabComplete = false;
-var infoTabComplete = false;
-var validContact = false;
-var validPayPal = false;
+		var discountList = [0,0,1,3,5,5,7,7];
+		var costList = [5,3,5,5,1,1,0]
+		var itemList = [this.overlay, this.camerabox, this.offlinebg, this.profilecover, this.panel, this.avatar, this.specialrequest];
+		var cost = 0;
+		var count = 0;
 
+		for(var i=0; i<7; i++) {
+			cost += costList[i]*itemList[i];
 
-
-
-function openTab(evt, tabDescriptionName) {
-
-	var i, tabsDescriptionArray, tabsArray;
-	tabsDescriptionArray = document.getElementsByClassName("tabDescription");
-	for (i=0; i<tabsDescriptionArray.length; i++) {
-		tabsDescriptionArray[i].style.display = "none";
-	}
-
-	tabsArray = document.getElementsByClassName("tab");
-	for (i=0; i<tabsArray.length; i++) {
-		tabsArray[i].className = tabsArray[i].className.replace(" tabSelected", "");
-	}
-
-	document.getElementById(tabDescriptionName).style.display = "block";
-	evt.currentTarget.firstElementChild.className += " tabSelected";
-
-}
-
-
-
-
-function calculate(evt) {
-
-	var i;
-	var cost = 0;
-	var count = 0;
-	var discount = 0;
-	var totalcost = 0;
-	var specialRequest = false;
-
-	var quantityNames = ["Overlays", "Camera Boxes", "Offline Backgrounds", "Profile Covers", "Panels", "Avatars"];
-	var quantityValues = [5,3,5,5,1,1];
-	var discountList = [0,0,1,3,5,5,7,7];
-	var quantityArray = [];
-
-	for(i=0; i<quantityNames.length; i++) {
-		quantityArray.push(document.getElementsByName(quantityNames[i])[0]);
-	}
-
-	if (document.getElementsByName('Special Requests')[0].value > 0) {
-		count++;
-		specialRequest = true;
-	}
-
-	for (i=0; i<quantityArray.length; i++) {
-		if (quantityArray[i].value > 0) {
-			count++;
-			cost += quantityValues[quantityNames.indexOf(quantityArray[i].name)] * quantityArray[i].value;
+			if(itemList[i]>0) {
+				count++;
+			}
 		}
+
+		var discount = discountList[count];
+
+		this.complete = (this.specialrequest > 0 && this.specialrequestdesc!="") || (count > 0 && this.specialrequest == 0);
+
+		return [cost, discount, cost - discount, count, this.specialrequest>0];
 	}
 
-	discount = discountList[count];
-	totalcost = cost - discount;
-	return [cost, discount, totalcost, count, specialRequest];
 }
 
+var info = {
+	complete: false,
+	name: "",
+	contactType: "Email",
+	contact: "",
+	validcontact: false,
+	about: "",
+	paypalemail: "",
+	validpaypal: false,
+	otherinfo: "",
 
+	validateContact: function() {
+		var optionName = ["Email", "Discord", "Twitch", "Other"];
 
+    	var regexList = [
+    		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 
+    		/^\S[\s\S]*#\d{4}$/, 
+    		/^[a-zA-Z0-9_]{4,25}$/,
+    		/^[\s\S]*$/
+    		];
 
+    	var re = regexList[optionName.indexOf(this.contactType)];
 
-function checkOrderTab(evt) {
+    	this.validcontact = re.test(this.contact.toLowerCase());
+	},
 
-	var calculation = calculate(evt);
+	validatePayPal: function() {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	if (calculation[4]) {
-		document.getElementById('cost-value').childNodes[0].childNodes[0].nodeValue = "$TBD USD";
-		document.getElementById('totalcost-value').childNodes[0].childNodes[0].nodeValue = "$TBD USD";
+		this.validpaypal = re.test(this.paypalemail.toLowerCase());
+	},
+
+	check: function() {
+		this.complete = (this.name != "") && this.validcontact && this.validpaypal && (this.about != "");
 	}
 
-	document.getElementById('discount-value').childNodes[0].childNodes[0].nodeValue = "$" + calculation[1] + ".00 USD";
+}
 
-	if (document.getElementsByName('Special Requests')[0].value == 0) {
-		document.getElementById('cost-value').childNodes[0].childNodes[0].nodeValue = "$" + calculation[0] + ".00 USD";
-		document.getElementById('totalcost-value').childNodes[0].childNodes[0].nodeValue = "$" + calculation[2] + ".00 USD";
-	}
+var conversion = {
+	"Overlays": "overlay",
+	"Camera Boxes": "camerabox",
+	"Offline Backgrounds": "offlinebg",
+	"Profile Covers": "profilecover",
+	"Panels": "panel",
+	"Avatars": "avatar",
+	"Special Requests": "specialrequest",
+	"Special Request Description": "specialrequestdesc",
+	"IGN": "name",
+	"Contact Platform": "contactType",
+	"Contact Information": "contact",
+	"Customer Reference": "about",
+	"PayPal Email": "paypalemail",
+	"Other Information": "otherinfo"
+}
 
+function checkOrder() {
 
-	if (calculation[3] > 0) {
-		itemTabComplete = true;
+	if(order.complete && info.complete) {
+		$("#ReviewTab").removeClass("disabled");
+		$("#ReviewTab").addClass("enabled");
 	}
 
 	else {
-		itemTabComplete = false;
-	}
-
-	if (document.getElementsByName('Special Requests')[0].value > 0 && document.getElementsByName("Special Request Description")[0].value == "") {
-		itemTabComplete = false;
-	}
-
-	checkReviewTab(evt);
-}
-
-
-
-
-function checkInfoTab(evt) {
-
-	var i;
-	var allFilled = true;
-	var inputArray = [];
-	var textareaArray = [];
-
-	inputArray = document.getElementById("Info").getElementsByTagName("input");
-	textarea = document.getElementsByName("Customer Reference")[0];
-
-	for (i=0; i<inputArray.length; i++) {
-		if (inputArray[i].value == "") {
-			allFilled = false;
-		}
-	}
-
-
-
-	if (textarea.value == "") {
-		allFilled = false;
-	}
-
-	
-
-	infoTabComplete = allFilled;
-
-	checkReviewTab(evt);
-}
-
-
-
-
-function checkReviewTab(evnt) {
-
-	if (itemTabComplete && infoTabComplete && validContact && validPayPal) {
-		document.getElementById("ReviewTab").className = "enabled";
-	}
-
-	else {
-		document.getElementById("ReviewTab").className = "disabled";
+		$("#ReviewTab").removeClass("enabled");
+		$("#ReviewTab").addClass("disabled");
 	}
 }
 
+$(document).ready(function(){
+
+
+	$(window).keydown(function(event) {
+    	if(event.keyCode == 13) {
+    		event.preventDefault();
+    		return false;
+    	}
+  	});
 
 
 
-function changeSelectPlaceholder(evt) {
-	var optionName = ["Email", "Discord", "Twitch", "Other"];
-	var placeholderText = ["username@service.com...", "Username#XXXX...", "Username...", "Please include platform name..."];
+	$(".tab").click(function(){
+		$(".tab").removeClass("tabSelected");
+		$(this).addClass("tabSelected");
 
-	document.getElementsByName("Contact Information")[0].placeholder = placeholderText[optionName.indexOf(document.getElementsByName("Contact Platform")[0].value)];
-}
-
-
-
-
-function validate(evt) {
-
-	var optionName = ["Email", "Discord", "Twitch", "Other"];
-
-    var regexList = [
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 
-    /^\S[\s\S]*#\d{4}$/, 
-    /^[a-zA-Z0-9_]{4,25}$/,
-    /^[\s\S]*$/];
-
-    var re = regexList[optionName.indexOf(document.getElementsByName("Contact Platform")[0].value)];
-
-    if (re.test(document.getElementsByName("Contact Information")[0].value.toLowerCase())) {
-    	document.getElementsByName("Contact Information")[0].style.border = "1px solid green";
-    	validContact = true;
-    }
-
-    else {
-    	document.getElementsByName("Contact Information")[0].style.border = "1px solid red";
-    	validContact = false;
-    }
-}
+		$(".tabDescription").css("display","none");
+		$("#" + $(this).attr("tab-name")).css("display","block");
+	});
 
 
 
 
-function validatePayPal(evt) {
 
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(document.getElementsByName("PayPal Email")[0].value.toLowerCase())) {
-    	document.getElementsByName("PayPal Email")[0].style.border = "1px solid green";
-    	validPayPal = true;
-    }
+	$("#Items").find("*").change(function(){
+		order[conversion[$(this).attr("name")]] = $(this).val();
+		var calculation = order.calculate();
 
-    else {
-    	document.getElementsByName("PayPal Email")[0].style.border = "1px solid red";
-    	validPayPal = false;
-    }
+		$('#discount-value').get(0).childNodes[0].childNodes[0].nodeValue = "$" + calculation[1] + ".00 USD";
 
-}
-
-
-
-
-function generateOrder(evt) {
-	var i;
-	var itemsToDelete = document.getElementById("itemTable").getElementsByClassName("product-item");
-
-	while(itemsToDelete.length > 0) {
-		itemsToDelete[0].parentNode.removeChild(itemsToDelete[0]);
-	}
-
-	var itemNames = ["Overlays", "Camera Boxes", "Offline Backgrounds", "Profile Covers", "Panels", "Avatars"];
-	var itemValues = [5,3,5,5,1,1];
-	var item;
-
-	for(i=0; i<itemNames.length; i++) {
-		item = document.getElementsByName(itemNames[i])[0]
-
-		if(item.value >0) {
-			var itemDiv = document.createElement("p");
-			var quantityDiv = document.createElement("p");
-			var priceDiv = document.createElement("p");
-
-			itemDiv.className = "product-item";
-			quantityDiv.className = "product-item";
-			priceDiv.className = "product-item";
-
-			itemDiv.innerText = itemNames[i];
-			quantityDiv.innerText = item.value;
-
-			price = item.value * itemValues[i];
-
-			priceDiv.innerText = item.value + " x  $" + itemValues[i] + ".00 USD = $" + price + ".00 USD";
-
-			document.getElementById("itemTable").appendChild(itemDiv);
-			document.getElementById("itemTable").appendChild(quantityDiv);
-			document.getElementById("itemTable").appendChild(priceDiv);
+		if(calculation[4]) {
+			$('#cost-value').get(0).childNodes[0].childNodes[0].nodeValue = "$TBD USD";
+			$('#totalcost-value').get(0).childNodes[0].childNodes[0].nodeValue = "$TBD USD";
 		}
 
-	}
+		else {
+			$('#cost-value').get(0).childNodes[0].childNodes[0].nodeValue = "$" + calculation[0] + ".00 USD";
+			$('#totalcost-value').get(0).childNodes[0].childNodes[0].nodeValue = "$" + calculation[2] + ".00 USD";
+		}
 
-	if(document.getElementsByName("Special Requests")[0].value > 0) {
-		var specialDiv = document.createElement("p");
-		var sQuantityDiv = document.createElement("p");
-		var sPriceDiv = document.createElement("p");
-
-		specialDiv.className = "product-item";
-		sQuantityDiv.className = "product-item";
-		sPriceDiv.className = "product-item";
-
-		specialDiv.innerText = "Special Request: " + document.getElementsByName("Special Request Description")[0].value;
-		sQuantityDiv.innerText = document.getElementsByName("Special Requests")[0].value;
-		sPriceDiv.innerText = "$TBD USD";
-
-		document.getElementById("itemTable").appendChild(specialDiv);
-		document.getElementById("itemTable").appendChild(sQuantityDiv);
-		document.getElementById("itemTable").appendChild(sPriceDiv);
-	}
-
-	var calculation = calculate(evt);
-
-	var costTitle = document.createElement("p");
-	var costDiv = document.createElement("p");
-
-	costTitle.className = "product-item";
-	costTitle.style = "font-weight: bold; border-top: 1px solid black; text-align: right; grid-column-start: 1; grid-column-end: 3;";
-
-	costDiv.className = "product-item";
-	costDiv.style = "font-weight: bold; border-top: 1px solid black;";
-
-	costTitle.innerText = "Cost:";
-	costDiv.innerText = "$" + calculation[0] + ".00 USD";
-
-	document.getElementById("itemTable").appendChild(costTitle);
-	document.getElementById("itemTable").appendChild(costDiv);
-
-
-
-	var discountTitle = document.createElement("p");
-	var discountDiv = document.createElement("p");
-
-	discountTitle.className = "product-item";
-	discountTitle.style = "font-weight: bold; border-bottom: 1px solid black; text-align: right; grid-column-start: 1; grid-column-end: 3;"
-
-	discountDiv.className = "product-item";
-	discountDiv.style = "font-weight: bold; border-bottom: 1px solid black;";
-
-	discountTitle.innerText = "Discount:";
-	discountDiv.innerText = "$" + calculation[1] + ".00 USD";
-
-	document.getElementById("itemTable").appendChild(discountTitle);
-	document.getElementById("itemTable").appendChild(discountDiv);
-
-
-
-
-	var totalcostTitle = document.createElement("p");
-	var totalcostDiv = document.createElement("p");
-
-	totalcostTitle.className = "product-item";
-	totalcostTitle.style = "font-weight: bold; border-top: 1px solid black; text-align: right; grid-column-start: 1; grid-column-end: 3;";
-
-	totalcostDiv.className = "product-item";
-	totalcostDiv.style = "font-weight: bold; border-top: 1px solid black;";
-
-	totalcostTitle.innerText = "Total Cost:"
-	totalcostDiv.innerText = "$" + calculation[2] + ".00 USD";
-
-	document.getElementById("itemTable").appendChild(totalcostTitle);
-	document.getElementById("itemTable").appendChild(totalcostDiv);
+		checkOrder();
+	});
 
 
 
 
 
-	var idArray = ["IGN", "Reference", "PayPal", "Other"];
-	var nameArray = ["IGN", "Customer Reference", "PayPal Email", "Other Information"];
+	$("#Info").find("*").change(function(){
+		var optionName = ["Email", "Discord", "Twitch", "Other"];
+		var placeholderText = ["username@service.com...", "Username#XXXX...", "Username...", "Please include platform name..."];
 
-	for(i=0; i<4; i++) {
-		document.getElementById(idArray[i]).innerText = document.getElementsByName(nameArray[i])[0].value;
-	}
+		info[conversion[$(this).attr("name")]] = $(this).val();
 
-	var contactPlatform = document.getElementsByName("Contact Platform")[0].value;
-	var contactInfo = document.getElementsByName("Contact Information")[0].value;
+		if($(this).attr("name") == "Contact Information" || $(this).attr("name")=="Contact Platform") {
+			info.validateContact();
+			$("[name='Contact Information']").attr("placeholder", placeholderText[optionName.indexOf(info.contactType)]);
 
-	document.getElementById("Contact").innerText = contactPlatform + ": " + contactInfo;
-}
+			if(info.validcontact) {
+				$("[name='Contact Information']").css("border", "1px solid green");
+			}
+
+			else if(info.contact == "") {
+				$("[name='Contact Information']").css("border", "1px solid gray");
+			}
+
+			else {
+				$("[name='Contact Information']").css("border", "1px solid red");
+			}
+		}
+
+		if($(this).attr("name")=="PayPal Email") {
+			info.validatePayPal();
+
+			if(info.validpaypal) {
+				$(this).css("border", "1px solid green");
+			}
+
+			else if(info.paypalemail == "") {
+				$(this).css("border", "1px solid gray");
+			}
+
+			else {
+				$(this).css("border", "1px solid red");
+			}
+		}
+
+		info.check();
+
+		checkOrder();
+	});
+
+
+
+
+	$("#ReviewTab").click(function(){
+		var i;
+		var itemNames = ["Overlays", "Camera Boxes", "Offline Backgrounds", "Profile Covers", "Panels", "Avatars"];
+		var itemValues = [5,3,5,5,1,1];
+
+		$(".product-item").remove();
+
+		for (i=0; i<6; i++) {
+			if(order[conversion[itemNames[i]]]>0) {
+				$("#itemTable").children().last().after(
+					$("<p></p>").text(itemNames[i]).addClass("product-item"),
+					$("<p></p>").text(order[conversion[itemNames[i]]]).addClass("product-item"),
+					$("<p></p>").text(order[conversion[itemNames[i]]] + " x $" + itemValues[i] + ".00USD = $" + order[conversion[itemNames[i]]]*itemValues[i] + ".00USD").addClass("product-item"),
+				);
+				
+			}
+		}
+
+		var calculation = order.calculate();
+
+		if(calculation[4]>0) {
+			$("#itemTable").children().last().after(
+				$("<p></p>").text("Special Request: " + order.specialrequestdesc).addClass("product-item"),
+				$("<p></p>").text(order.specialrequest).addClass("product-item"),
+				$("<p></p>").text("$TBD USD").addClass("product-item"),
+			);
+		}
+
+		$("#itemTable").children().last().after(
+			$("<p></p>").text("Cost:").addClass("product-item").css({"font-weight": "bold", "border-top": "1px solid black", "text-align": "right", "grid-column-start": "1", "grid-column-end": "3"}),
+			$("<p></p>").text("$" + calculation[0] + ".00 USD").addClass("product-item").css({"font-weight": "bold", "border-top": "1px solid black"}),
+			$("<p></p>").text("Discount:").addClass("product-item").css({"font-weight": "bold", "border-bottom": "1px solid black", "text-align": "right", "grid-column-start": "1", "grid-column-end": "3"}),
+			$("<p></p>").text("$" + calculation[1] + ".00 USD").addClass("product-item").css({"font-weight": "bold", "border-bottom": "1px solid black"}),
+			$("<p></p>").text("Total Cost:").addClass("product-item").css({"font-weight": "bold", "border-top": "1px solid black", "text-align": "right", "grid-column-start": "1", "grid-column-end": "3"}),
+			$("<p></p>").text("$" + calculation[2] + ".00 USD").addClass("product-item").css({"font-weight": "bold", "border-top": "1px solid black"})
+		);
+
+		var idArray = ["IGN", "Reference", "PayPal", "Other"];
+		var nameArray = ["IGN", "Customer Reference", "PayPal Email", "Other Information"];
+
+		for(i=0; i<4; i++) {
+			$("#" + idArray[i]).get(0).innerText = info[conversion[nameArray[i]]];
+		}
+
+		$("#Contact").get(0).innerText = info.contactType + ": " + info.contact;
+	});
+
+});

@@ -3,6 +3,7 @@
 <head>
 	<title>Order Form - Amatzhukaze Graphics</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="OrderFormJS.js"></script>
 </head>
 <body>
@@ -18,20 +19,20 @@
 
 	<div class="tab-container" style="grid-template-columns: auto auto auto auto;">
 
-		<a href="http://amatzhukaze.graphics" onclick="openTab(event, 'Home');" style="text-decoration: none; color: black;">
-			<div class = "tab"><h2>Homepage</h2></div>
+		<a href="http://amatzhukaze.graphics" style="text-decoration: none; color: black;">
+			<div class = "tab" tab-name = "Homepage"><h2>Homepage</h2></div>
 		</a>
 
-		<a href="javascript:void(0)" onclick="openTab(event, 'Items');" style="text-decoration: none; color: black;">
-			<div class = "tab tabSelected"><h2>Step 1: Items</h2></div>
+		<a href="javascript:void(0)" style="text-decoration: none; color: black;">
+			<div class = "tab tabSelected" tab-name = "Items"><h2>Step 1: Items</h2></div>
 		</a>
 
-		<a href="javascript:void(0)" onclick="openTab(event, 'Info');" style="text-decoration: none; color: black;">
-			<div class = "tab"><h2>Step 2: Information</h2></div>
+		<a href="javascript:void(0)" style="text-decoration: none; color: black;">
+			<div class = "tab" tab-name = "Info"><h2>Step 2: Information</h2></div>
 		</a>
 
-		<a id="ReviewTab" class = "disabled" href="javascript:void(0)" onclick="generateOrder(event); openTab(event, 'Review');" style="text-decoration: none; color: black;">
-			<div class = "tab"><h2>Step 3: Checkout</h2></div>
+		<a id="ReviewTab" class = "disabled" href="javascript:void(0)" style="text-decoration: none; color: black;">
+			<div class = "tab" tab-name = "Review"><h2>Step 3: Checkout</h2></div>
 		</a>
 
 	</div>
@@ -47,7 +48,7 @@
 					<div class="itemgallery-itempic" style="background: url(overlay.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Overlay ($5 USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Overlays" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Overlays" value = 0 min = 0 placeholder="Enter value...">
 			</div>
 
 
@@ -56,7 +57,7 @@
 					<div class="itemgallery-itempic" style="background: url(cambox.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Camera Box ($3 USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Camera Boxes" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Camera Boxes" value = 0 min = 0 placeholder="Enter value..." >
 			</div>
 
 
@@ -65,7 +66,7 @@
 					<div class="itemgallery-itempic" style="background: url(offlinebg.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Offline Background ($5 USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Offline Backgrounds" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Offline Backgrounds" value = 0 min = 0 placeholder="Enter value...">
 			</div>
 
 
@@ -74,7 +75,7 @@
 					<div class="itemgallery-itempic" style="background: url(profilecover.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Profile Cover ($5 USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Profile Covers" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Profile Covers" value = 0 min = 0 placeholder="Enter value...">
 			</div>
 
 
@@ -83,7 +84,7 @@
 					<div class="itemgallery-itempic" style="background: url(panels.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Panel ($1 USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Panels" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Panels" value = 0 min = 0 placeholder="Enter value...">
 			</div>
 
 
@@ -92,7 +93,7 @@
 					<div class="itemgallery-itempic" style="background: url(ava.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Avatar ($1 USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Avatars" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Avatars" value = 0 min = 0 placeholder="Enter value...">
 			</div>
 
 
@@ -101,12 +102,12 @@
 					<div class="itemgallery-itempic" style="background: url(specialrequest.png); background-size: contain; background-repeat: no-repeat; height: 0; width: 100%; padding-top: 56.25%;"></div>
 					<div class="itemgallery-itemdescription"><p style="text-align: center;">Special Request ($? USD)</p></div>
 				</div>
-				<p>Quantity:</p><input type="number" name="Special Requests" value = 0 min = 0 placeholder="Enter value..." onchange="checkOrderTab(event)">
+				<p>Quantity:</p><input type="number" name="Special Requests" value = 0 min = 0 placeholder="Enter value...">
 			</div>
 
 
 			<div class="itemgallery-item" style="grid-column-start: 2; grid-column-end: 4;">
-				<textarea name="Special Request Description" placeholder="Describe your request..." onchange="checkOrderTab(event);" style="height: 100%; width: 100%; text-anchor: top left; margin: 0;"></textarea>
+				<textarea name="Special Request Description" placeholder="Describe your request..." style="height: 100%; width: 100%; text-anchor: top left; margin: 0;"></textarea>
 			</div>
 
 			<div id="costCalculator" class="itemgallery-item" style="grid-column-start: 1; grid-column-end: 4; display: grid; grid-template-columns: 25% 12.5% 25% 12.5% 25%;">
@@ -126,27 +127,27 @@
 	</div>
 
 	<div id = "Info" class = "tabDescription" style="display: none;">
-		<p>What do you want me to call you by?</p><input type="text" name="IGN" placeholder="Name..." onchange="checkInfoTab(event);">
+		<p>What do you want me to call you by?</p><input type="text" name="IGN" placeholder="Name..." >
 		<br><br><br>
 		<p>How do you want me to contact you?</p>
 		<div style="display: grid; grid-template-columns: 200px auto; grid-column-gap: 20px;">
-		<select name="Contact Platform" onchange="changeSelectPlaceholder(event); validate(event); checkInfoTab(event);">
+		<select name="Contact Platform">
 			<option value="Email">Email</option>
 			<option value = "Discord">Discord</option>
 			<option value = "Twitch">Twitch</option>
 			<option value = "Other">Other...</option>
 		</select>
-		<input type="text" name="Contact Information" placeholder='username@service.com...' onchange="validate(event); checkInfoTab(event);">
+		<input type="text" name="Contact Information" placeholder='username@service.com...'>
 		</div>
 		<br><br><br>
 		<p>Help me know who you are through your social media...</p>
-		<textarea name="Customer Reference" placeholder="Paste a link to your pages..." style="height: 300px;" onchange="checkInfoTab(event);"></textarea>
+		<textarea name="Customer Reference" placeholder="Paste a link to your pages..." style="height: 300px;"></textarea>
 		<br><br><br>
 		<p>What is your PayPal Email?</p>
-		<input type="text" name="PayPal Email" placeholder="Email..." onchange="validatePayPal(event); checkInfoTab(event);">
+		<input type="text" name="PayPal Email" placeholder="Email...">
 		<br><br><br>
 		<p>Anything Else?</p>
-		<textarea name="Other Information" placeholder="Anything else you would like to mention?..." style="height: 300px" onchange="checkInfoTab(event);"></textarea>
+		<textarea name="Other Information" placeholder="Anything else you would like to mention?..." style="height: 300px"></textarea>
 	</div>
 
 	<div id = "Review" class = "tabDescription" style="display: none;">
@@ -158,9 +159,9 @@
 			</h2>
 
 			<div id="itemTable" style="width:100%; text-align: left; display: grid; grid-template-columns: 50% 10% 40%;">
-				<div class="product-header"><p>Item</p></div>
-				<div class="product-header"><p>Qty.</p></div>
-				<div class="product-header"><p>Price</p></div>
+				<p class="product-header">Item</p>
+				<p class="product-header">Qty.</p>
+				<p class="product-header">Price</p>
 			</div>
 		</div>
 

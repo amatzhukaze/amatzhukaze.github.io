@@ -4,6 +4,7 @@
 
 	<title>Amatzhukaze Graphics</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="indexJS.js"></script>
 
 </head>
@@ -18,20 +19,20 @@
 	</div>
 
 	<div class = "tab-container" style="grid-template-columns: 25% 25% 25% 25%;">
-		<a href="javascript:void(0)" onclick="openTab(event, 'About');" style="text-decoration: none; color: black;">
-			<div class = "tab tabSelected"><h2>About Me</h2></div>
+		<a href="javascript:void(0)" style="text-decoration: none; color: black;">
+			<div class = "tab tabSelected" tab-name="About"><h2>About Me</h2></div>
 		</a>
 
-		<a href="javascript:void(0)" onclick="openTab(event, 'Products');" style="text-decoration: none; color: black;">
-			<div class = "tab"><h2>Products</h2></div>
+		<a href="javascript:void(0)" style="text-decoration: none; color: black;">
+			<div class = "tab" tab-name="Products"><h2>Products</h2></div>
 		</a>
 
-		<a href="javascript:void(0)" onclick="openTab(event, 'Works');" style="text-decoration: none; color: black;">
-			<div class = "tab"><h2>Previous Works</h2></div>
+		<a href="javascript:void(0)" style="text-decoration: none; color: black;">
+			<div class = "tab" tab-name="Works"><h2>Previous Works</h2></div>
 		</a>
 
-		<a href="http://amatzhukaze.graphics/OrderForm.html" onclick="openTab(event, 'Order');" style="text-decoration: none; color: black;">
-			<div class = "tab"><h2>Order Now</h2></div>
+		<a href="http://amatzhukaze.graphics/OrderForm.html" style="text-decoration: none; color: black;">
+			<div class = "tab" tab-name="Order"><h2>Order Now</h2></div>
 		</a>
 	</div>
 
@@ -127,32 +128,32 @@
 
 	<div id = "Works" class = "tabDescription" style="display: none;">
 		<div class = "gallery-container">
-			<div class = "gallery-item">
-				<a href="javascript:void(0)" onclick="openImage(event, 'Balexi');">
+			<div class = "gallery-item" tab-name="Balexi">
+				<a href="javascript:void(0)">
 					<img src="https://puu.sh/yXukU/c694aedda0.png" alt="Balexi">
 				</a>
 			</div>
 
-			<div class = "gallery-item">
-				<a href="javascript:void(0)" onclick="openImage(event, 'DeadFracture');">
+			<div class = "gallery-item" tab-name="DeadFracture">
+				<a href="javascript:void(0)">
 					<img src="https://puu.sh/yXulJ/858a10903a.png" alt="DeadFracture">
 				</a>
 			</div>
 
-			<div class = "gallery-item">
-				<a href="javascript:void(0)" onclick="openImage(event, 'Jelloby');">
+			<div class = "gallery-item" tab-name="Jelloby">
+				<a href="javascript:void(0)">
 					<img src="https://puu.sh/yXulP/3898d2297f.png" alt="Jelloby">
 				</a>
 			</div>
 
-			<div class = "gallery-item">
-				<a href="javascript:void(0)" onclick="openImage(event, 'Krulza');">
+			<div class = "gallery-item" tab-name="Krulza">
+				<a href="javascript:void(0)">
 					<img src="https://puu.sh/yXumA/6fcf5c7cec.png" alt="Krulza">
 				</a>
 			</div>
 
-			<div class = "gallery-item">
-				<a href="javascript:void(0)" onclick="openImage(event, 'Oreselia');">
+			<div class = "gallery-item" tab-name="Oreselia">
+				<a href="javascript:void(0)">
 					<img src="https://puu.sh/yXYmc/0c7b7ef7dc.png" alt="Oreselia">
 				</a>
 			</div>
