@@ -21,9 +21,14 @@ $(document).ready(function(){
 		$(".gallery-item").removeClass("tabSelected");
 		$(this).addClass("tabSelected");
 
-		$("#gallery-image").attr({
-			"src": imageLinkArray[imageNameArray.indexOf($(this).attr("tab-name"))],
-			"alt": $(this).attr("tab-name")
+		var srcLink = imageLinkArray[imageNameArray.indexOf($(this).attr("tab-name"))];
+		var altName = $(this).attr("tab-name");
+
+		$("#gallery-image").fadeTo(600, 0, function(){
+			$("#gallery-image").attr({
+				"src": srcLink,
+				"alt": altName
+			}).fadeTo(600, 1);
 		});
 
 	});

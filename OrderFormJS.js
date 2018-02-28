@@ -102,6 +102,7 @@ function checkOrder() {
 	}
 }
 
+
 $(document).ready(function(){
 
 

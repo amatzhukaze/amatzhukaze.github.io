@@ -5,18 +5,20 @@
 	<title>Amatzhukaze Graphics</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="indexJS.js"></script>
+	<script type="text/javascript" src="indexJS.js"></script>
+	<script type="text/javascript" src="bgimgrotateJS.js"></script>
 
 </head>
 <body>
 
-	<div class = "banner">
+	<div class = "banner"></div>
 
-		<div style="text-align: center; height: 100%; display: block; margin: auto;">
-			<span style="display: inline-block; height: 100%; vertical-align: middle;"></span>
-			<img src="logo.svg" alt="Amatzhukaze Graphics" style="vertical-align: middle; margin: auto; animation: animationFrames ease 1s;" height="75%" />
-		</div>
+	<div style="position: absolute; top: 0; left: 0; text-align: center; height: 50%; width: 100%; display: block; margin: auto; z-index: 10">
+		<span style="display: inline-block; height: 100%; vertical-align: middle;"></span>
+		<img src="logo.svg" alt="Amatzhukaze Graphics" style="vertical-align: middle; margin: auto; animation: animationFrames ease 1s;" height="75%" />
 	</div>
+
+	<div style="background-color: white; width: 100%; position: relative;">
 
 	<div class = "tab-container" style="grid-template-columns: 25% 25% 25% 25%;">
 		<a href="javascript:void(0)" style="text-decoration: none; color: black;">
@@ -167,10 +169,26 @@
 		</div>
 	</div>
 
+	</div>
+
 
 	<div class="bottombanner" style="text-align: center;">
 		
-		<p style="font-size: 15px; color: white; animation: animationFrames ease 1s;">
+		<p style="font-size: 15px; color: white; opacity: 0">
+
+		Email: amatzhukaze@gmail.com | Twitch: amatzhukaze | Twitter: @amatzhukaze | Discord: Amatzhukaze#0735
+
+		<br>
+
+		<a target="_blank" href="https://bit.ly/AmatOrderForm" style="text-decoration: none; color: white;">Terms and Policies</a>
+
+		</p>
+
+	</div>
+
+	<div style="text-align: center; padding: 75px 150px 75px 150px; position: relative; top: -200px;">
+		
+		<p style="font-size: 15px; color: white; animation: animationFrames ease 1s; z-index: 10;">
 
 		Email: amatzhukaze@gmail.com | <a target="_blank" href="https://www.twitch.tv/amatzhukaze" style="text-decoration: none; color: white;">Twitch: amatzhukaze</a> | <a target="_blank" href="https://www.twitter.com/amatzhukaze" style="text-decoration: none; color: white;">Twitter: @amatzhukaze</a> | Discord: Amatzhukaze#0735
 
@@ -181,6 +199,10 @@
 		</p>
 
 	</div>
+
+
+
+
 
 </body>
 </html>
