@@ -128,7 +128,7 @@ a:active {
 .gallery-item {
 	padding-bottom: 5px;
 	margin: 10px;
-	border-bottom: none;
+	border-bottom: 1px solid rgba(0,0,0,0);
 }
 
 .gallery-item img {
