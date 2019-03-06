@@ -1,8 +1,8 @@
 var bgArray = [
-"https://puu.sh/zuf2w/6b7a1e3ba9.png",
-"https://puu.sh/zxoZX/ae19fde253.png",
-"https://puu.sh/zxpb8/76241dc569.png",
-"https://puu.sh/zx6wZ/b2235381a3.jpg"
+"bg/1.jpg",
+"bg/2.jpg",
+"bg/3.jpg",
+"bg/4.jpg"
 ];
 
 var imgcounter = 0;

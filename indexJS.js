@@ -1,6 +1,44 @@
-$(document).ready(function(){
+var balexi = {
+	"Overlay": "images/previews/balexiOverlay.jpg",
+	"Offline Background": "images/previews/balexiOffline.jpg",
+	"Banner": "images/previews/balexiBanner.jpg",
+	"Panels": "images/previews/balexiPanels.jpg"
+}
 
-	$(".tab").click(function(){
+var oreselia = {
+	"Overlay": "images/previews/oreseliaOverlay.jpg",
+	"League Overlay": "images/previews/oreseliaLeagueOverlay.jpg",
+	"League Client": "images/previews/oreseliaLeagueClient.jpg",
+	"Offline Background": "images/previews/oreseliaOffline.jpg",
+	"Youtube Banner": "images/previews/oreseliaYTBanner.jpg",
+	"Cambox and Panels": "images/previews/oreseliaCamboxPanels.jpg"
+}
+
+var deadfracture = {
+	"Overlay": "images/previews/deadfractureOverlay.jpg",
+	"Offline Background": "images/previews/deadfractureOffline.jpg",
+	"Panels": "images/previews/deadfracturePanels.jpg"
+}
+
+var jelloby = {
+	"League Overlay": "images/previews/jellobyLeagueOverlay.jpg",
+	"League Client": "images/previews/jellobyLeagueClient.jpg",
+	"Overlay": "images/previews/jellobyOverlay.jpg",
+	"Offline Background": "images/previews/jellobyOffline.jpg",
+	"Osu Userpage Banner": "images/previews/jellobyOsuUserpage.jpg",
+	"Panels": "images/previews/jellobyPanels.jpg"
+}
+
+var krulza = {
+	"Dark Overlay": "images/previews/krulzaOverlayDark.jpg",
+	"Light Overlay": "images/previews/krulzaOverlayLight.jpg"
+}
+
+var clientList = {"Balexi": balexi, "Oreselia": oreselia, "DeadFracture": deadfracture, "Jelloby": jelloby, "Krulza": krulza}
+
+$(document).ready(function() {
+
+	$(".tab").click(function() {
 		$(".tab").removeClass("tabSelected");
 		$(this).addClass("tabSelected");
 
@@ -8,29 +46,28 @@ $(document).ready(function(){
 		$("#" + $(this).attr("tab-name")).css("display","block");
 	});
 
-	$(".gallery-item").click(function(){
-		var imageNameArray = ["Balexi", "DeadFracture", "Jelloby", "Krulza", "Oreselia"];
-		var imageLinkArray = [
-		"https://puu.sh/yXLQd/ab2f1a5ab3.png",
-		"https://puu.sh/yXMfc/2c46293a60.png",
-		"https://puu.sh/yXMie/c904247cb9.png",
-		"https://puu.sh/yXMjR/2d6bf9325a.png",
-		"https://puu.sh/yXYnT/b37bb5bd65.png"
-		];
-
+	$(".gallery-item").click(function() {
 		$(".gallery-item").removeClass("tabSelected");
 		$(this).addClass("tabSelected");
 
-		var srcLink = imageLinkArray[imageNameArray.indexOf($(this).attr("tab-name"))];
-		var altName = $(this).attr("tab-name");
+		var src = $(this).attr("tab-name")
+		var srcObj = clientList[$(this).attr("tab-name")];
 
-		$("#gallery-image").fadeTo(600, 0, function(){
-			$("#gallery-image").attr({
-				"src": srcLink,
-				"alt": altName
-			}).fadeTo(600, 1);
-		});
+		$("#gallery-display").fadeTo(600, 0, function() {
+			$("#gallery-display .product-item").remove();
+			$("#gallery-display .product-header").remove();
+			$("#gallery-display img").remove();
 
+			for (var key in srcObj) {
+				if (srcObj.hasOwnProperty(key)) {
+					$("#gallery-display").children().last().after(
+						$("<h2></h2>").text(key).addClass("product-header").css({"text-align": "center", "margin-bottom": "20px", "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%), url(bg/" + src + "Title.png)", "background-position": "center"}),
+						$("<img src=" + srcObj[key] + "></img>").css({"width": "100%", "margin-bottom": "125px"}),
+					);
+				}
+			}
+		}).fadeTo(600, 1);
+		
 	});
 
 });
