@@ -34,7 +34,17 @@ var krulza = {
 	"Light Overlay": "images/previews/krulzaOverlayLight.jpg"
 }
 
-var clientList = {"Balexi": balexi, "Oreselia": oreselia, "DeadFracture": deadfracture, "Jelloby": jelloby, "Krulza": krulza}
+var amatzhu = {
+	"Overlay": "images/previews/amatzhuOverlay.jpg",
+	"Offline Background": "images/previews/amatzhuOffline.jpg",
+	"Old Overlay": "images/previews/amatzhuOverlay2.jpg",
+	"Older Overlay": "images/previews/amatzhuOverlay1.jpg",
+	"Oldest Overlays": "images/previews/amatzhuOverlay3.jpg",
+	"Old Offline Background": "images/previews/amatzhuOffline1.jpg",
+	"Panels": "images/previews/amatzhuPanels.jpg"
+}
+
+var clientList = {"Balexi": balexi, "Oreselia": oreselia, "DeadFracture": deadfracture, "Jelloby": jelloby, "Krulza": krulza, "Amatzhukaze": amatzhu}
 
 $(document).ready(function() {
 
