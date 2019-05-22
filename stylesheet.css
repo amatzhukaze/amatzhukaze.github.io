@@ -126,7 +126,7 @@ a:active {
 	left: 25%;
 	width: 50%;
 	display: grid;
-	grid-template-columns: auto auto auto auto auto auto;
+	grid-template-columns: auto auto auto auto;
 	padding-bottom: 75px;
 }
 

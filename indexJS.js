@@ -1,50 +1,64 @@
 var balexi = {
-	"Overlay": "images/previews/balexiOverlay.jpg",
-	"Offline Background": "images/previews/balexiOffline.jpg",
-	"Banner": "images/previews/balexiBanner.jpg",
-	"Panels": "images/previews/balexiPanels.jpg"
+	"Overlay": "balexiOverlay.jpg",
+	"Offline Background": "balexiOffline.jpg",
+	"Banner": "balexiBanner.jpg",
+	"Panels": "balexiPanels.jpg"
 }
 
 var oreselia = {
-	"Overlay": "images/previews/oreseliaOverlay.jpg",
-	"League Overlay": "images/previews/oreseliaLeagueOverlay.jpg",
-	"League Client": "images/previews/oreseliaLeagueClient.jpg",
-	"Offline Background": "images/previews/oreseliaOffline.jpg",
-	"Youtube Banner": "images/previews/oreseliaYTBanner.jpg",
-	"Cambox and Panels": "images/previews/oreseliaCamboxPanels.jpg"
+	"Overlay": "oreseliaOverlay.jpg",
+	"League Overlay": "oreseliaLeagueOverlay.jpg",
+	"League Client": "oreseliaLeagueClient.jpg",
+	"Offline Background": "oreseliaOffline.jpg",
+	"Youtube Banner": "oreseliaYTBanner.jpg",
+	"Cambox and Panels": "oreseliaCamboxPanels.jpg"
 }
 
 var deadfracture = {
-	"Overlay": "images/previews/deadfractureOverlay.jpg",
-	"Offline Background": "images/previews/deadfractureOffline.jpg",
-	"Panels": "images/previews/deadfracturePanels.jpg"
+	"Overlay": "deadfractureOverlay.jpg",
+	"Offline Background": "deadfractureOffline.jpg",
+	"Panels": "deadfracturePanels.jpg"
 }
 
 var jelloby = {
-	"League Overlay": "images/previews/jellobyLeagueOverlay.jpg",
-	"League Client": "images/previews/jellobyLeagueClient.jpg",
-	"Overlay": "images/previews/jellobyOverlay.jpg",
-	"Offline Background": "images/previews/jellobyOffline.jpg",
-	"Osu Userpage Banner": "images/previews/jellobyOsuUserpage.jpg",
-	"Panels": "images/previews/jellobyPanels.jpg"
+	"League Overlay": "jellobyLeagueOverlay.jpg",
+	"League Client": "jellobyLeagueClient.jpg",
+	"Overlay": "jellobyOverlay.jpg",
+	"Offline Background": "jellobyOffline.jpg",
+	"Osu Userpage Banner": "jellobyOsuUserpage.jpg",
+	"Panels": "jellobyPanels.jpg"
 }
 
 var krulza = {
-	"Dark Overlay": "images/previews/krulzaOverlayDark.jpg",
-	"Light Overlay": "images/previews/krulzaOverlayLight.jpg"
+	"Dark Overlay": "krulzaOverlayDark.jpg",
+	"Light Overlay": "krulzaOverlayLight.jpg"
+}
+
+var nobless = {
+	"League Overlay": "noblessLeagueOverlay.jpg",
+	"League Client": "noblessLeagueClient.jpg",
+	"Offline Background": "noblessOffline.jpg",
+	"Starting Soon": "noblessStarting.jpg",
+	"Cambox and Panels": "noblessCamboxPanels.jpg"
+}
+
+var misc = {
+	"Blue Zenith": "bluezenith.jpg",
+	"Angelsim/firebat92": "firebat.jpg",
+	"FadedDragon": "fadedDragon.jpg"
 }
 
 var amatzhu = {
-	"Overlay": "images/previews/amatzhuOverlay.jpg",
-	"Offline Background": "images/previews/amatzhuOffline.jpg",
-	"Old Overlay": "images/previews/amatzhuOverlay2.jpg",
-	"Older Overlay": "images/previews/amatzhuOverlay1.jpg",
-	"Oldest Overlays": "images/previews/amatzhuOverlay3.jpg",
-	"Old Offline Background": "images/previews/amatzhuOffline1.jpg",
-	"Panels": "images/previews/amatzhuPanels.jpg"
+	"Overlay": "amatzhuOverlay.jpg",
+	"Offline Background": "amatzhuOffline.jpg",
+	"Old Overlay": "amatzhuOverlay2.jpg",
+	"Older Overlay": "amatzhuOverlay1.jpg",
+	"Oldest Overlays": "amatzhuOverlay3.jpg",
+	"Old Offline Background": "amatzhuOffline1.jpg",
+	"Panels": "amatzhuPanels.jpg"
 }
 
-var clientList = {"Balexi": balexi, "Oreselia": oreselia, "DeadFracture": deadfracture, "Jelloby": jelloby, "Krulza": krulza, "Amatzhukaze": amatzhu}
+var clientList = {"Balexi": balexi, "Oreselia": oreselia, "DeadFracture": deadfracture, "Jelloby": jelloby, "Krulza": krulza, "noBless": nobless, "Miscellaneous": misc, "Amatzhukaze": amatzhu}
 
 $(document).ready(function() {
 
@@ -72,7 +86,7 @@ $(document).ready(function() {
 				if (srcObj.hasOwnProperty(key)) {
 					$("#gallery-display").children().last().after(
 						$("<h2></h2>").text(key).addClass("product-header").css({"text-align": "center", "margin-bottom": "20px", "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%), url(bg/" + src + "Title.png)", "background-position": "center"}),
-						$("<img src=" + srcObj[key] + "></img>").css({"width": "100%", "margin-bottom": "125px"}),
+						$("<img src=images/previews/" + srcObj[key] + "></img>").css({"width": "100%", "margin-bottom": "125px"}),
 					);
 				}
 			}
