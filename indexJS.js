@@ -77,7 +77,7 @@ $(document).ready(function() {
 		var src = $(this).attr("tab-name")
 		var srcObj = clientList[$(this).attr("tab-name")];
 
-		$("#gallery-display").fadeTo(600, 0, function() {
+		$("#gallery-display").fadeTo(1000, 0, function() {
 			$("#gallery-display .product-item").remove();
 			$("#gallery-display .product-header").remove();
 			$("#gallery-display img").remove();
@@ -90,7 +90,7 @@ $(document).ready(function() {
 					);
 				}
 			}
-		}).fadeTo(600, 1);
+		}).fadeTo(1000, 1);
 		
 	});
 
